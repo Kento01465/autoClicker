@@ -1,0 +1,11 @@
+- wait: 2
+- click: "assets/searchform.png"
+- wait: 1
+- input: "google play games"
+- wait: 1
+- key: "enter"
+- wait: 5
+- click: "assets/kurarowa_icon.png"
+- wait: 5
+- click: "assets/kurarowa_play_button.png"
+

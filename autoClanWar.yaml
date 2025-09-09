@@ -1,0 +1,29 @@
+- wait: 2
+- click_pos: [1100, 1000]
+- loop:
+    count: 4
+    steps:
+    - wait: 3
+    - click: "assets/batoru.png"
+    - wait: 3
+    - click: "assets/batoruStr.png"
+    - loop:
+        count: 'infinite'
+        steps:
+        - if_condition:
+          image: 'assets/loading.png'
+          then:
+            - wait: 5
+          else:
+            - break_current_loop: true
+        - wait: 5
+    - loop:
+        count: 'infinite'
+        steps:
+        - if_condition:
+          image: 'assets/kurarowa/end.png'
+          then:
+            - click: "assets/kurarowa/end.png"
+          else:
+            - wait: 10
+        - wait: 5

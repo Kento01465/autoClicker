@@ -1,0 +1,58 @@
+# - wait: 2
+# - click: "assets/batoruStr.png"
+- loop:
+    count: 100 # 繰り返し回数
+    steps:   # 繰り返すアクション
+    - wait: 6
+    - loop:
+        count: 15 # 繰り返し回数
+        steps:   # 繰り返すアクション
+          - wait: 3
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1100, 900]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1000, 750]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - wait: 4
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [900, 900]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1000, 750]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - wait: 5
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [850, 900]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1000, 750]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - wait: 6
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1000, 900]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1000, 750]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - wait: 10
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1200, 900]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1000, 750]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - wait: 1
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1200, 900]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1000, 750]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - wait: 1
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1200, 900]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1000, 750]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - wait: 6
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [1000, 900]
+          - break_current_loop_on_found: "assets/saisenn.png" 
+          - click_pos: [900, 750]
+    - wait: 2
+    - click: "assets/saisenn.png"
