@@ -1,0 +1,30 @@
+name: Deploy Python App (Self-hosted)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t python-docker-demo .
+
+      # ここを修正
+      - name: Stop Docker Container (if exists)
+        run: docker stop python-app
+        continue-on-error: true # このステップでエラーが発生してもワークフローを続行
+
+      # ここを修正
+      - name: Remove Docker Container (if exists)
+        run: docker rm python-app
+        continue-on-error: true # このステップでエラーが発生してもワークフローを続行
+
+      - name: Run Docker container
+        run: docker run -d -p 8080:5000 --name python-app python-docker-demo
