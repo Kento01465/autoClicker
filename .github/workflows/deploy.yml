@@ -11,20 +11,44 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -t python-docker-demo .
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-      # ここを修正
-      - name: Stop Docker Container (if exists)
-        run: docker stop python-app
-        continue-on-error: true # このステップでエラーが発生してもワークフローを続行
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      # ここを修正
-      - name: Remove Docker Container (if exists)
-        run: docker rm python-app
-        continue-on-error: true # このステップでエラーが発生してもワークフローを続行
+      - name: Stop existing Python process (if running)
+        run: |
+          pkill -f "python main.py" || true
+        continue-on-error: true
 
-      - name: Run Docker container
-        run: docker run -d -p 8080:5000 --name python-app python-docker-demo
+      - name: Wait for process to stop
+        run: sleep 2
+
+      - name: Start Python application
+        run: |
+          nohup python main.py > app.log 2>&1 &
+          echo $! > app.pid
+          echo "Application started with PID: $(cat app.pid)"
+
+      - name: Verify application is running
+        run: |
+          sleep 5
+          if ps -p $(cat app.pid) > /dev/null; then
+            echo "Application is running successfully"
+          else
+            echo "Application failed to start"
+            cat app.log
+            exit 1
+          fi
+
+      - name: Show application logs
+        run: |
+          echo "=== Application Logs ==="
+          tail -20 app.log
